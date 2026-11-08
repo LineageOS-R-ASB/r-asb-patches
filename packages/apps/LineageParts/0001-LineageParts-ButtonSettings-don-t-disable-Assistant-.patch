@@ -1,0 +1,35 @@
+From 8c8b6e9d17e256cffc03592a4d5e18f50338aa40 Mon Sep 17 00:00:00 2001
+From: A2L5E0X1 <alexed25@protonmail.com>
+Date: Thu, 22 Jan 2026 12:14:47 +0100
+Subject: [PATCH] LineageParts: ButtonSettings: don't disable Assistant button
+ when using keydisabler
+
+* our devices have the Assistant button on the side, so it's not a navigation key to be disabled
+
+Change-Id: If38b8a6784d30eaa4c88c19b651f19e430f257a9
+---
+ src/org/lineageos/lineageparts/input/ButtonSettings.java | 8 --------
+ 1 file changed, 8 deletions(-)
+
+diff --git a/src/org/lineageos/lineageparts/input/ButtonSettings.java b/src/org/lineageos/lineageparts/input/ButtonSettings.java
+index 613e847..a67313b 100644
+--- a/src/org/lineageos/lineageparts/input/ButtonSettings.java
++++ b/src/org/lineageos/lineageparts/input/ButtonSettings.java
+@@ -730,14 +730,6 @@ public class ButtonSettings extends SettingsPreferenceFragment
+                 mMenuLongPressAction.setEnabled(!navbarEnabled);
+             }
+         }
+-        if (assistCategory != null) {
+-            if (mAssistPressAction != null) {
+-                mAssistPressAction.setEnabled(!navbarEnabled);
+-            }
+-            if (mAssistLongPressAction != null) {
+-                mAssistLongPressAction.setEnabled(!navbarEnabled);
+-            }
+-        }
+         if (appSwitchCategory != null) {
+             if (mAppSwitchPressAction != null) {
+                 mAppSwitchPressAction.setEnabled(!navbarEnabled);
+-- 
+2.56.0
+

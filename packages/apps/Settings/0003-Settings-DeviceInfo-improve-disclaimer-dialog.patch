@@ -1,0 +1,31 @@
+From dea9c63f65141f4c7d63d4eb8cb28de319a389ed Mon Sep 17 00:00:00 2001
+From: A2L5E0X1 <alexed25@protonmail.com>
+Date: Sun, 11 Jan 2026 19:56:48 +0100
+Subject: [PATCH 3/3] Settings/DeviceInfo: improve disclaimer dialog
+
+* remove that Android 2.x ahhh icon
+* replace 'cancel' button with 'ok'
+
+Change-Id: I73833f0f9708f77ddfb30d4bd0cf0222ccc94f95
+---
+ .../SecurityPatchLevelPreferenceController.java                | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/src/com/android/settings/deviceinfo/firmwareversion/SecurityPatchLevelPreferenceController.java b/src/com/android/settings/deviceinfo/firmwareversion/SecurityPatchLevelPreferenceController.java
+index 14cfc65193..899e2f72a7 100644
+--- a/src/com/android/settings/deviceinfo/firmwareversion/SecurityPatchLevelPreferenceController.java
++++ b/src/com/android/settings/deviceinfo/firmwareversion/SecurityPatchLevelPreferenceController.java
+@@ -62,9 +62,8 @@ public class SecurityPatchLevelPreferenceController extends BasePreferenceContro
+ 
+         new AlertDialog.Builder(mContext)
+             .setTitle(R.string.security_patch_legacy)
+-            .setIcon(android.R.drawable.ic_dialog_alert)
+             .setMessage(R.string.security_patch_legacy_info)
+-            .setNegativeButton(R.string.cancel, null)
++            .setNegativeButton(R.string.okay, null)
+             .create().show();
+ 
+         return true;
+-- 
+2.56.0
+

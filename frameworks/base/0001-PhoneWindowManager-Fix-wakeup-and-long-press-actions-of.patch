@@ -1,0 +1,104 @@
+From 1120b055e0b4853252cfe09af80851d3331a5d26 Mon Sep 17 00:00:00 2001
+From: kyasu <kyasu.dev@gmail.com>
+Date: Sat, 18 Feb 2023 13:56:10 +0900
+Subject: [PATCH] PhoneWindowManager: Fix wakeup and long-press actions of
+ assistant key
+
+Added wakeup action and moved long-press action from
+interceptKeyBeforeQueueing to interceptKeyBeforeDispatching
+to handle long-press events.
+
+[ Linux4: backport to 18.1 ]
+
+Co-Authored-By: Tim Zimmermann <tim@linux4.de>
+Change-Id: I77c8093db0e1a9a3b544723302a13df7bf199ba1
+---
+ .../server/policy/PhoneWindowManager.java     | 59 +++++++++++--------
+ 1 file changed, 36 insertions(+), 23 deletions(-)
+
+diff --git a/services/core/java/com/android/server/policy/PhoneWindowManager.java b/services/core/java/com/android/server/policy/PhoneWindowManager.java
+index 28724e2ebe99..3d231c7964a6 100644
+--- a/services/core/java/com/android/server/policy/PhoneWindowManager.java
++++ b/services/core/java/com/android/server/policy/PhoneWindowManager.java
+@@ -547,6 +547,7 @@ public void onDrawn() {
+     private ActivityTaskManagerInternal.SleepTokenAcquirer mScreenOffSleepTokenAcquirer;
+     volatile boolean mKeyguardOccluded;
+     boolean mMenuPressed;
++    boolean mAssistPressed;
+     boolean mAppSwitchLongPressed;
+     Intent mHomeIntent;
+     Intent mCarDockIntent;
+@@ -3222,7 +3223,37 @@ public long interceptKeyBeforeDispatching(IBinder focusedToken, KeyEvent event,
+                 toggleKeyboardShortcutsMenu(event.getDeviceId());
+             }
+         } else if (keyCode == KeyEvent.KEYCODE_ASSIST) {
+-            Slog.wtf(TAG, "KEYCODE_ASSIST should be handled in interceptKeyBeforeQueueing");
++            if (!keyguardOn) {
++                if (down) {
++                    if (mAssistPressAction == Action.APP_SWITCH
++                            || mAssistLongPressAction == Action.APP_SWITCH) {
++                        preloadRecentApps();
++                    }
++                    if (repeatCount == 0) {
++                        mAssistPressed = true;
++                    } else if (longPress) {
++                        if (mAssistLongPressAction != Action.NOTHING) {
++                            if (mAssistLongPressAction != Action.APP_SWITCH) {
++                                cancelPreloadRecentApps();
++                            }
++                            performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, false,
++                                    "Assist - Long Press");
++                            performKeyAction(mAssistLongPressAction, event);
++                            mAssistPressed = false;
++                        }
++                    }
++                } else {
++                    if (mAssistPressed) {
++                        if (mAssistPressAction != Action.APP_SWITCH) {
++                            cancelPreloadRecentApps();
++                        }
++                        mAssistPressed = false;
++                        if (!canceled) {
++                            performKeyAction(mAssistPressAction, event);
++                        }
++                    }
++                }
++            }
+             return -1;
+         } else if (keyCode == KeyEvent.KEYCODE_VOICE_ASSIST) {
+             Slog.wtf(TAG, "KEYCODE_VOICE_ASSIST should be handled in interceptKeyBeforeQueueing");
+@@ -4633,30 +4664,12 @@ public int interceptKeyBeforeQueueing(KeyEvent event, int policyFlags) {
+                 break;
+             }
+             case KeyEvent.KEYCODE_ASSIST: {
+-                final boolean longPressed = event.getRepeatCount() > 0;
+-                if (down && (mAssistPressAction == Action.APP_SWITCH
+-                        || mAssistLongPressAction == Action.APP_SWITCH)) {
+-                    preloadRecentApps();
+-                }
+-                if (down && longPressed) {
+-                    if (!keyguardOn() && mAssistLongPressAction != Action.NOTHING) {
+-                        if (mAssistLongPressAction != Action.APP_SWITCH) {
+-                            cancelPreloadRecentApps();
+-                        }
+-                        performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, false,
+-                            "Assist - Long Press");
+-                        performKeyAction(mAssistLongPressAction, event);
+-                    }
+-                }
+-                if (!down && !longPressed) {
+-                    if (mAssistPressAction != Action.APP_SWITCH) {
+-                        cancelPreloadRecentApps();
+-                    }
+-                    if (!canceled) {
+-                        performKeyAction(mAssistPressAction, event);
++                if (down && !interactive) {
++                    isWakeKey = mWakeOnAssistKeyPress;
++                    if (!isWakeKey) {
++                        useHapticFeedback = false;
+                     }
+                 }
+-                result &= ~ACTION_PASS_TO_USER;
+                 break;
+             }
+             case KeyEvent.KEYCODE_VOICE_ASSIST: {

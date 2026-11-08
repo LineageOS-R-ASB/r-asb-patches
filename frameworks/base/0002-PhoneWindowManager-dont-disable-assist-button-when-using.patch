@@ -1,0 +1,36 @@
+From 51f6f9ca9341e403119c769ebb55525f27abb934 Mon Sep 17 00:00:00 2001
+From: A2L5E0X1 <alexed25@protonmail.com>
+Date: Fri, 23 Jan 2026 01:54:55 +0100
+Subject: [PATCH] PhoneWindowManager: don't disable assist button when using
+ keydisabler
+
+* our devices have the Assistant button on the side, so it's not a navigation key to be disabled
+
+Change-Id: I9a78e31afebcb0307ceeb5c1369093663d8f297b
+---
+ .../com/android/server/policy/PhoneWindowManager.java     | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/services/core/java/com/android/server/policy/PhoneWindowManager.java b/services/core/java/com/android/server/policy/PhoneWindowManager.java
+index 3d231c7964a..14df3d0c4fc 100644
+--- a/services/core/java/com/android/server/policy/PhoneWindowManager.java
++++ b/services/core/java/com/android/server/policy/PhoneWindowManager.java
+@@ -2283,14 +2283,14 @@ public void onReceive(Context context, Intent intent) {
+     private void updateKeyAssignments() {
+         int activeHardwareKeys = mDeviceHardwareKeys;
+ 
+-        if (mForceNavbar == 1) {
+-            activeHardwareKeys = 0;
+-        }
+-
+         final boolean hasMenu = (activeHardwareKeys & KEY_MASK_MENU) != 0;
+         final boolean hasAssist = (activeHardwareKeys & KEY_MASK_ASSIST) != 0;
+         final boolean hasAppSwitch = (activeHardwareKeys & KEY_MASK_APP_SWITCH) != 0;
+ 
++        if (mForceNavbar == 1) {
++            activeHardwareKeys = hasAssist ? 8 : 0;
++        }
++
+         final ContentResolver resolver = mContext.getContentResolver();
+         final Resources res = mContext.getResources();
+ 

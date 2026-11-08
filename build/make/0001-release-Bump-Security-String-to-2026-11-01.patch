@@ -1,0 +1,153 @@
+From 7f5253680af4d82c59dfe225921826593a21742f Mon Sep 17 00:00:00 2001
+From: Nolen Johnson <johnsonnolen@gmail.com>
+Date: Wed, 14 Oct 2026 13:47:09 -0400
+Subject: [PATCH] release: Bump Security String to 2026-11-01
+
+Implemented:
+============
+CVE              References    Type    Severity    Updated AOSP versions
+CVE-2025-22424   A-350456241   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2025-22426   A-365086157   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2025-48600   A-435188844   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-28643   A-495646742   DoS     High        16, 16-qpr2, 17
+CVE-2026-49935   A-495409704   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-55275   A-522376559   EoP     Critical    16, 16-qpr2, 17
+CVE-2026-55283   A-522375782   EoP     Critical    16, 16-qpr2, 17
+CVE-2026-58814   A-517378147   DoS     Critical    14, 15, 16, 16-qpr2, 17
+CVE-2026-58866   A-494816520   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58867   A-515051007   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58868   A-486464711   RCE     Critical    14, 15, 16, 16-qpr2, 17
+CVE-2026-58870   A-515047710   ID      High        15, 16, 16-qpr2, 17
+CVE-2026-58871   A-511543870   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58875   A-515038894   DoS     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58876   A-503543341   RCE     Critical    14, 15, 16, 16-qpr2, 17
+CVE-2026-58877   A-500705928   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58879   A-517593332   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58884   A-515051745   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58886   A-527035500   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58934   A-527038637   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58936   A-496614216   RCE     Critical    14, 15, 16, 16-qpr2, 17
+CVE-2026-58937   A-464276781   DoS     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58938   A-503554506   DoS     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58943   A-313418699   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58944   A-527036864   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58946   A-527034642   EoP     High        16, 16-qpr2, 17
+CVE-2026-58949   A-503551664   DoS     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58951   A-527037031   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58955   A-503434084   DoS     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58956   A-461507723   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58957   A-500368515   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58960   A-517377069   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58961   A-527039128   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58962   A-527035781   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58963   A-517377034   DoS     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58964   A-515712425   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58965   A-514861143   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58970   A-478861451   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58971   A-511027559   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58973   A-523171206   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58974   A-527036176   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58975   A-506176085   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58976   A-496454250   ID      High        15, 16, 16-qpr2, 17
+CVE-2026-58978   A-459460815   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58984   A-514731794   EoP     Critical    15, 16, 16-qpr2, 17
+CVE-2026-58988   A-269456968   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58989   A-429182079   EoP     High        15, 16, 16-qpr2
+CVE-2026-58990   A-511263142   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58994   A-532588581   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58995   A-505748392   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58997   A-513648011   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-59001   A-517376998   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-59002   A-519884370   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-59003   A-515391495   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-59004   A-472701802   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-59005   A-517376786   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-59006   A-493560718   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-59007   A-514742326   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-59010   A-509578318   DoS     High        14, 15, 16, 16-qpr2
+CVE-2026-59015   A-497659915   ID      High        15, 16, 16-qpr2, 17
+CVE-2026-59020   A-515039372   DoS     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-59021   A-515039631   DoS     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-59022   A-517377899   ID      High        15, 16, 16-qpr2, 17
+CVE-2026-59028   A-522373825   EoP     High        15, 16, 16-qpr2, 17
+CVE-2026-59031   A-514737201   DoS     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-59032   A-522375529   ID      High        14, 15, 16, 16-qpr2, 17
+
+Previously Implemented:
+=======================
+CVE              References    Type    Severity    Updated AOSP versions
+CVE-2025-22442   A-382064697   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2025-26433   A-385347977   EoP     High        14, 15
+CVE-2026-0053    A-368376056   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-28586   A-477935679   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-28588   A-475232460   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-28597   A-262884935   EoP     High        14, 15, 16, 16-qpr2
+CVE-2026-28621   A-356604577   ID      High        14, 15, 16
+CVE-2026-28632   A-444443479   ID      High        14, 15, 16, 16-qpr2
+CVE-2026-28645   A-466379326   EoP     High        15, 16, 16-qpr2, 17
+CVE-2026-28665   A-488559440   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-45514   A-465446148   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-45522   A-482024712   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-49912   A-478725173   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-49922   A-504612754   EoP     High        14, 15, 16, 16-qpr2
+CVE-2026-49923   A-498857374   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-49924   A-451602444   DoS     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-49925   A-490083213   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-49931   A-490916793   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-49934   A-508585261   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-55257   A-472968114   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-55262   A-505067993   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-55263   A-472976054   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-55264   A-498162425   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-55272   A-492093013   DoS     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-55287   A-472955222   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-55288   A-517377278   DoS     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58817   A-429417238   DoS     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58837   A-525133623   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58838   A-482947423   ID      High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58853   A-503542266   EoP     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58857   A-503553199   RCE     High        14, 15, 16, 16-qpr2, 17
+CVE-2026-58882   A-517376969   DoS     Critical    14, 15, 16, 16-qpr2, 17
+CVE-2026-58945   A-465140520   ID      High        14, 15, 16, 16-qpr2, 17
+
+Not Implemented:
+================
+None
+
+Not Applicable (platform source):
+=================================
+CVE              References    Type    Severity    Updated AOSP versions
+CVE-2026-55271   A-499298430   EoP     High        17
+CVE-2026-55289   A-505203996   EoP     High        17
+CVE-2026-58883   A-517377202   DoS     High        16-qpr2, 17
+CVE-2026-58885   A-517377188   EoP     High        17
+CVE-2026-58966   A-511632970   EoP     High        16-qpr2, 17
+CVE-2026-58969   A-514738573   ID      High        16-qpr2, 17
+CVE-2026-58979   A-527038421   EoP     High        17
+CVE-2026-58985   A-514745329   DoS     High        16-qpr2, 17
+CVE-2026-59000   A-517378646   EoP     High        16-qpr2, 17
+CVE-2026-59008   A-281543351   DoS     High        16-qpr2, 17
+CVE-2026-59012   A-527424853   ID      High        14
+CVE-2026-59016   A-546680461   EoP     High        17
+
+Change-Id: Iaa6d8b36b77d451300601367e77fac028de03f8f
+---
+ core/version_defaults.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/version_defaults.mk b/core/version_defaults.mk
+index a25aea3d1..3fa3c74d1 100644
+--- a/core/version_defaults.mk
++++ b/core/version_defaults.mk
+@@ -240,7 +240,7 @@ ifndef PLATFORM_SECURITY_PATCH
+     #  It must be of the form "YYYY-MM-DD" on production devices.
+     #  It must match one of the Android Security Patch Level strings of the Public Security Bulletins.
+     #  If there is no $PLATFORM_SECURITY_PATCH set, keep it empty.
+-      PLATFORM_SECURITY_PATCH := 2024-02-05
++      PLATFORM_SECURITY_PATCH := 2026-11-01
+ endif
+ .KATI_READONLY := PLATFORM_SECURITY_PATCH
+ 
+-- 
+2.56.0
+
